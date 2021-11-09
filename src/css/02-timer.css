@@ -1,0 +1,43 @@
+body {
+  background-color: aqua;
+}
+
+input[type='text'] {
+  padding-left: 10px;
+}
+#datetime-picker {
+  width: 190px;
+  height: 30px;
+  background-color: rgb(235, 230, 230);
+  margin-left: 10px;
+  border: 2px solid rgb(235, 230, 230);
+
+  border-width: 2px;
+  border-style: inset;
+  border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+}
+
+button {
+  width: 60px;
+
+  padding: 10px, 20px;
+  height: 30px;
+
+  margin-left: 10px;
+}
+
+.timer {
+  display: flex;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  align-items: center;
+}
+.value {
+  font-size: 40px;
+}
+.label {
+  text-transform: capitalize;
+}
