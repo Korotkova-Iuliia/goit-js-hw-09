@@ -28,43 +28,79 @@ function onFormSubmit(e) {
 
   e.currentTarget.elements;
   console.log(e.currentTarget.elements);
-  console.log(`${delayEl.value}`);
-  console.log(`${stepEl.value}`);
-  console.log(`${amountEl.value}`);
-  // delayEl`${inputBtn.value}px`;
+  const delay = `${delayEl.value}`;
+  const step = `${stepEl.value}`;
+  const amount = `${amountEl.value}`;
+  console.log(delay);
+  console.log(step);
+  console.log(amount);
+
   // Значения полей
-  const promiseCount = 5;
+  const promiseCount = amount;
 
   for (let i = 0; i < promiseCount; i += 1) {
-    // createPromise(/* аргументы */);
+    function createPromise(i, delay) {
+      const shouldResolve = Math.random() > 0.3;
+      if (shouldResolve) {
+        return Notify.success(
+          'Click Me',
+          function cb() {
+            // callback
+          },
+          {
+            timeout: delay,
+          },
+        );
+      } else {
+        return Notify.failure(
+          'Don`t Click Me',
+          function cb() {
+            // callback
+          },
+          {
+            timeout: delay,
+          },
+        );
+      }
+    }
+    createPromise();
   }
 }
 
-// function createPromise(position, delay) {
-//   const shouldResolve = Math.random() > 0.3;
-//   if (shouldResolve) {
-//     return Notify.success(
-//       'Click Me',
-//       function cb() {
-//         // callback
-//       },
-//       {
-//         timeout: 1000,
-//       },
-//     );
-//   } else {
-//     return Notify.failure(
-//       'Don`t Click Me',
-//       function cb() {
-//         // callback
-//       },
-//       {
-//         timeout: 1000,
-//       },
-//     );
-//   }
+// function createPromise(/* параметры */) {
+//   new Promise((resolve, reject) => {
+//     const shoudResolve = Math.random > 0.3;
+
+//     setTimeout(() => {
+//       if (shoudResolve) {
+//         resolve(/* ... /);
+//       } else {
+//         reject(/ ... */);
+//       }
+//     }, задержка);
+//   });
 // }
-// createPromise();
+
+// const makePromise = (text, delay) => {
+//   return new Promise((resolve, reject) => {
+//  const shoudResolve = Math.random > 0.3;
+
+//     if (shoudResolve) {
+//         resolve(/* ... /);
+//       } else {
+//         reject(/ ... */);
+//       }
+//     }, delay);
+//   });
+// };
+
+// const promiseA = makePromise('promiseA value', 1000);
+// const promiseB = makePromise('promiseB value', 3000);
+
+// Promise.all([promiseA, promiseB])
+//   .then(value => console.log(value)) //["promiseA value", "promiseB value"]
+//   .catch(error => console.log(error));
+// \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 // function onFormSubmit(event) {
 //   event.preventDefault();
@@ -83,39 +119,7 @@ function onFormSubmit(e) {
 //   //   console.log(userData);
 //   //   form.reset();
 // }
-// const makePromise = (text, delay) => {
-//   return new Promise(resolve => {
-//     setTimeout(() => resolve(text), delay);
-//   });
-// };
 
-// const promiseA = makePromise('promiseA value', 1000);
-// const promiseB = makePromise('promiseB value', 3000);
-
-// Promise.all([promiseA, promiseB])
-//   .then(value => console.log(value)) //["promiseA value", "promiseB value"]
-//   .catch(error => console.log(error));
+//
 
 // // \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-// form.addEventListener('submit', e => {
-//   // Значения полей
-//   const promiseCount = 5;
-
-//   for (let i = 0; i < promiseCount; i += 1) {
-//     createPromise(/* аргументы */);
-//   }
-// });
-
-// function createPromise(/* параметры */) {
-//   new Promise((resolve, reject) => {
-//     const shoudResolve = Math.random > 0.3;
-
-//     setTimeout(() => {
-//       if (shoudResolve) {
-//         resolve(/* ... /);
-//       } else {
-//         reject(/ ... */);
-//       }
-//     }, задержка);
-//   });
-// }
