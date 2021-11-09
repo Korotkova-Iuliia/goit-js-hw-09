@@ -1,15 +1,24 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
+import Notiflix from 'notiflix';
+import 'notiflix/dist/notiflix-3.2.2.min.css';
 
 const inputEl = document.querySelector('input[type = "text"]');
-// console.log(inputEl);
 const btnStartEl = document.querySelector('button[data-start]');
+
+const refs = {
+  dataDaysEl: document.querySelector('button[data-days]'),
+  dataHoursEl: document.querySelector('button[data-hours]'),
+  dataMinutesEl: document.querySelector('button[data-minutes]'),
+  dataSecondsEl: document.querySelector('button[data-seconds]'),
+};
+console.log(refs);
+console.log(refs.dataDaysEl);
+
 let selectedDate = 0;
-//
-// console.log(btnStartEl);
+
 btnStartEl.disabled = true;
-// const date = new Date();
-// console.log(date);
+
 const options = {
   enableTime: true,
   time_24hr: true,
@@ -23,10 +32,8 @@ const options = {
     selectedDate = selectedDates[0].getTime();
     console.log(selectedDate);
 
-    if (dateNow >= selectedDate) {
-      console.log(dateNow >= selectedDate);
-
-      return window.alert('Please choose a date in the future');
+    if (dateNow > selectedDate) {
+      Notiflix.Notify.failure('Please choose a date in the future');
     }
     btnStartEl.disabled = false;
     btnStartEl.addEventListener('click', onBtnStartElClick);
@@ -36,30 +43,60 @@ function onBtnStartElClick(e) {
   if (e.target.nodeName !== 'BUTTON') {
     return;
   }
+
   timer.start();
 }
 
-console.log(options);
+// console.log(options);
 const calendar = flatpickr(inputEl, options);
-console.log(calendar);
-console.log(calendar.selectedDates[0]);
-console.log(calendar.now);
+// console.log(calendar);
+// console.log(calendar.selectedDates[0]);
+// console.log(calendar.now);
 
 const timer = {
+  isActive: false,
+
   start() {
+    if (this.isActive) {
+      return;
+    }
+    this.isActive = true;
+    btnStartEl.disabled = true;
     const startTime = Date.now();
+
     // console.log(startTime);
     setInterval(() => {
       const currentTime = Date.now();
       const deltaTime = currentTime - startTime;
-      //   console.log('start interval:', startTime);
-      //   console.log('currentTime:', currentTime);
-      console.log(deltaTime);
-      const { days, hours, minutes, seconds } = convertMs(deltaTime);
+      if (deltaTime < 1000) {
+        clearInterval(selectedDate);
+      }
+
+      const time = convertMs(deltaTime);
+      //   const { days, hours, minutes, seconds } = convertMs(deltaTime);
+      console.log(time);
+
+      console.log((refs.clockface.textContent = time));
+      console.log(refs.clockface.textContent);
+
       console.log(`${days}, ${hours}, ${minutes}, ${seconds} `);
     }, 1000);
   },
 };
+console.log(refs.dataDaysEl.textContent);
+
+function updateTimer({ days, hours, minutes, seconds }) {
+  refs.dataDaysEl.textContent = `${days}`;
+  refs.dataHoursEl.textContent = `${hours}`;
+  refs.dataMinutesEl.textContent = `${minutes}`;
+  refs.dataSecondsEl.textContent = `${seconds}`;
+}
+// function clockFace({ days, hours, minutes, seconds }) {
+//   console.log(days.textContent);
+//   refs.clockface.textContent = `${days}, ${hours}, ${minutes}, ${seconds} `;
+//   //   days.clockFace.textContent = '${days}';
+// }
+
 function convertMs(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
