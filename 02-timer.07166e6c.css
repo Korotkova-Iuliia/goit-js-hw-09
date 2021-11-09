@@ -1,0 +1,2 @@
+body{background-color:#0ff}input[type=text]{padding-left:10px}#datetime-picker{width:190px;background-color:#ebe6e6;border:2px inset -internal-light-dark(#767676,#858585)}#datetime-picker,button{height:30px;margin-left:10px}button{width:60px;padding:10px,20px}.field,.timer{display:flex}.field{flex-direction:column;margin:10px;align-items:center}.value{font-size:40px}.label{text-transform:capitalize}
+/*# sourceMappingURL=/goit-js-hw-09/02-timer.07166e6c.css.map */
