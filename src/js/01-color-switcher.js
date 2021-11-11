@@ -9,11 +9,10 @@ btnStartEl.addEventListener('click', onBtnStartClick);
 btnStopEl.addEventListener('click', onBtnStopClick);
 
 function onBtnStartClick(e) {
+  btnStartEl.disabled = true;
+  btnStopEl.disabled = false;
   timerId = setInterval(() => {
     bodyEl.style.backgroundColor = getRandomHexColor();
-
-    btnStartEl.disabled = true;
-    btnStopEl.disabled = false;
   }, 1000);
 }
 btnStartEl.removeEventListener('click', onBtnStopClick);

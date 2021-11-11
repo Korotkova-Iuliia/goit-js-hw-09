@@ -22,7 +22,7 @@ function onFormSubmit(e) {
       currentDelay += stepDelay;
     }
 
-    createPromise(i, currentDelay);
+    createPromise(i + 1, currentDelay);
     // continue;
   }
 
