@@ -18,12 +18,12 @@ function onFormSubmit(e) {
 
   let currentDelay = firstDelay;
   for (let i = 0; i < promiseCount; i += 1) {
-    if (!(i === 0)) {
+    if (!== 0) {
       currentDelay += stepDelay;
     }
 
     createPromise(i + 1, currentDelay);
-    // continue;
+  
   }
 
   function createPromise(position, delay) {
